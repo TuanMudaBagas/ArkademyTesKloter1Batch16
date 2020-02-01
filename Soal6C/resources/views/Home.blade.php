@@ -33,6 +33,7 @@
             /* Most modern browsers support this now. */
             color: white;
         }
+
     </style>
 
     <title>Arkademy Tes Bootchamp!</title>
@@ -46,8 +47,9 @@
             <img src="{{asset('images')}}/logoArkademy.png" width="120" alt="">
         </a>
         <div class="search-bar">
-            <form class="form-inline">
-                <input class="form-control mr-sm-2 text-white ee" style="width: 820px;" type="text" placeholder="Search"
+            <form action="{{route('product.index')}}" method="POST" class="form-inline">
+                @csrf
+                <input class="form-control mr-sm-2 text-white ee" name="search" style="width: 820px;" type="text" placeholder="Search"
                     aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0 d-none" type="submit">Search</button>
             </form>
@@ -62,7 +64,7 @@
     <!-- Content -->
     <div class="container">
         <div class="row">
-            <div class="col-8 mx-auto mt-5">
+            <div class="col-9 mx-auto mt-5">
                 <table class="table table-borderless shadow">
                     <thead style="background-color: orange; color: white;">
                         <tr>
@@ -83,11 +85,69 @@
                             <td>{{$d->getCategory->name}}</td>
                             <td>{{$d->price}}</td>
                             <td>
-                                <a id="tombol" href="" class="text-danger mr-3"><i class="fas fa-trash"></i></a>
-                                <a data-toggle="modal" data-target="#modal-edit" class="text-success"><i
+                                <form class="d-inline" action="{{route('product.destroy',$d->id)}}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button id="tombol" type="submit" class="text-danger mr-3"><i class="fas fa-trash"></i></button>
+                                </form>
+                                <a data-toggle="modal" data-target="#modal-edit{{$d->id}}" class="text-success"><i
                                         class="fas fa-edit"></i></a>
                             </td>
                         </tr>
+                        <!-- Modal Edit -->
+                        <div class="modal fade" id="modal-edit{{$d->id}}" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">EDIT</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{route('product.update',$d->id)}}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="form-group">
+                                                <select class="form-control" name="id_cashier"
+                                                    id="exampleFormControlSelect1">
+                                                    @foreach ($cashier as $item)
+                                                    @if ($item->id == $d->id_cashier)
+                                                    <option selected value="{{$item->id}}">{{$item->name}}</option>
+                                                    @endif
+                                                    <option value="{{$item->id}}">{{$item->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <select class="form-control" name="id_category" id="">
+                                                    @foreach ($category as $item)
+                                                    @if ($item->id == $d->id_category)
+                                                    <option selected value="{{$item->id}}">{{$item->name}}</option>
+                                                    @endif
+                                                    <option value="{{$item->id}}">{{$item->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" name="name" class="form-control"
+                                                    id="exampleFormControlInput1" value="{{$d->name}}"
+                                                    placeholder="Product Name">
+                                            </div>
+                                            <div class="form-group">
+                                                <input name="price" value="{{$d->price}}" type="number"
+                                                    class="form-control" id="exampleFormControlInput1"
+                                                    placeholder="Price">
+                                            </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-warning text-white">EDIT</button>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                         @endforeach
                     </tbody>
                 </table>
@@ -114,14 +174,14 @@
                         <div class="form-group">
                             <select class="form-control" name="id_cashier" id="exampleFormControlSelect1">
                                 @foreach ($cashier as $item)
-                                    <option value="{{$item->id}}">{{$item->name}}</option>
+                                <option value="{{$item->id}}">{{$item->name}}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <select class="form-control" name="id_category" id="exampleFormControlSelect1">
-                                @foreach ($category as $item) 
-                                    <option value="{{$item->id}}">{{$item->name}}</option>
+                                @foreach ($category as $item)
+                                <option value="{{$item->id}}">{{$item->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -130,57 +190,22 @@
                                 placeholder="Product Name">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="price" id="exampleFormControlInput1" placeholder="Price">
+                            <input type="text" class="form-control" name="price" id="exampleFormControlInput1"
+                                placeholder="Price">
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-warning text-white">ADD</button>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-warning text-white">ADD</button>
+                </div>
                 </form>
             </div>
         </div>
     </div>
-
-    <!-- Modal Edit -->
-    <div class="modal fade" id="modal-edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">EDIT</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <select class="form-control" id="exampleFormControlSelect1">
-                            <option>Muhammad Bagas Fadillah</option>
-                            <option>Anis Dwi Zuliani</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <select class="form-control" id="exampleFormControlSelect1">
-                            <option>Food</option>
-                            <option>Drink</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="exampleFormControlInput1"
-                            placeholder="Product Name">
-                    </div>
-                    <div class="form-group">
-                        <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Price">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-warning text-white">EDIT</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
 
+
+    @include('sweetalert::alert')
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -194,6 +219,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
+    
 </body>
 
 </html>
