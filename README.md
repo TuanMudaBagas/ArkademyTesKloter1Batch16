@@ -1,6 +1,6 @@
 # BootChampTes
 
-<span style="color: green;text-align:bold">Penting!!:Saya Mengunakan Bahasa pemerograman PHP jadi membutuhkan Local Server seperti XAMPP dan untuk SOAL NOMOR 6C saya mengunakan Laravel silahkan seting di env Terlebih dahulu dan Migrate databasenya</span>
+- ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) `Penting!!:Saya Mengunakan Bahasa pemerograman PHP jadi membutuhkan Local Server seperti XAMPP dan untuk SOAL NOMOR 6C saya mengunakan Laravel silahkan seting di env Terlebih dahulu dan Migrate databasenya`
 
 Ujian Tes Masuk Bootchamp Arcademy
 
