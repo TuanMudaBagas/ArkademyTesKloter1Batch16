@@ -1,3 +1,3 @@
 # BootChampTes
 
-Ujian Tes Masuk Bootchamp Arcademy Bagas
+Ujian Tes Masuk Bootchamp Arcademy
