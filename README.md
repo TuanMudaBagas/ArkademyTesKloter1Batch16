@@ -1,2 +1,2 @@
 # BootChampTes
-Ujian Tes Masuk Bootchamp Arcademy
+Ujian Tes Masuk Bootchamp Arcademi
