@@ -1,4 +1,4 @@
-# BootChampTes
+# TES MASUK BOOTCHAM ARKADEMY BATCH 15 KLOTER 1 MUHAMMAD BAGAS FADILLAH
 
 - Penting!!:Saya Mengunakan Bahasa pemerograman PHP jadi membutuhkan Local Server seperti XAMPP dan untuk SOAL NOMOR 6C saya mengunakan Laravel silahkan seting di env Terlebih dahulu dan Migrate databasenya
 
