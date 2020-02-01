@@ -1,5 +1,7 @@
 # BootChampTes
 
+<span style="color: green;text-align:bold">Penting!!:Saya Mengunakan Bahasa pemerograman PHP jadi membutuhkan Local Server seperti XAMPP dan untuk SOAL NOMOR 6C saya mengunakan Laravel silahkan seting di env Terlebih dahulu dan Migrate databasenya</span>
+
 Ujian Tes Masuk Bootchamp Arcademy
 
 #1 Json adalah sebuah format standar dalam pengunaan API berisini Key dan Value umumnya semua API melakukan pertukaran data mengunakan format JSON
@@ -61,3 +63,9 @@ Ujian Tes Masuk Bootchamp Arcademy
 \
 \
 ![Image Table Product](images/halamanHapus.png)
+
+\
+\
+
+#6C\
+\*Saya mengunakan Framework Laravel terdapat dalam folder silahkan seting file env dan migrate databasenya TERIMAKASIH
