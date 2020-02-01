@@ -16,8 +16,14 @@ Ujian Tes Masuk Bootchamp Arcademy
 ![Image Table Category](images/categoryTable.png)
 
 \*Foto Table Cashier
+\
+\
 ![Image Table Cashier](images/cashierTable.png)
 
 \*Foto Table Setelah Di Quary
+\
+\
 ![Image Table Cashier](images/quary.png)
+\
+\
 ![Image Table Cashier](images/quaryTable.png)
